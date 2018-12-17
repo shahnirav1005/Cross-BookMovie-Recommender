@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="../lib/d3.v3.min.js"></script>
+<meta charset="utf-8">
+<style>
+
+</style>
+<body>
+<script>
+
+var data=[{franchise:'Harry Potter', revenue: {1:974, 2:878, 3:796, 4:896, 5:942, 6:935, 7:960, 8:1341 }},
+{franchise:'Transformers', revenue: {1:708, 2:836, 3:1123, 4:1104, 5:603 }},
+{franchise:'Mission Impossible', revenue: {1:457, 2:549, 3:397, 4:694, 5:700 }},
+{franchise:'Fast and the Furious', revenue: {1:206, 2:236, 3:363, 4:363, 5:629, 6:789, 7:1516, 8:1237 }},
+{franchise:'Hunger Games', revenue: {1:677, 2:864, 3:766, 4:650 }},
+{franchise:'Pirates of the Caribbean', revenue: {1:634, 2:1066, 3:963, 4:1045, 5:794 }}]
+
+var width=800
+var height=600
+var margin = {top: 20, right: 20, bottom: 30, left: 40}
+
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var y = d3.scaleBand().rangeRound([height,0]).padding(0.1),
+	x = d3.scaleLinear().rangeRound([0,width]);
+
+console.log("TO")
+
+</script>
+</body>
+</html>

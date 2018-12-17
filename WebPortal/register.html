@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Registration Form</title>
+
+	<link rel="stylesheet" href="demo.css">
+	<link rel="stylesheet" href="register.css">
+
+</head>
+
+	<header>
+		<h1>Movie and Book Recommender</h1>
+    </header>
+
+    <div class="main-content">
+
+        <!-- You only need this form and the form-register.css -->
+
+        <form class="form-register" method="post" action="#">
+
+            <div class="form-register-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>Create an account</h1>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Username</span>
+                            <input type="text" name="username" id="usernameTxt">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Password</span>
+                            <input type="password" name="password" id="passwordTxt">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Confirm Password</span>
+                            <input type="password" name="password" id="cpasswordTxt">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <button type="submit" onclick="registerFunction(event)">Next</button>
+                    </div>
+
+                    <a href="login.html">Already have an account? Login here &rarr;</a>
+
+                </div>
+
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+<script>
+
+    function registerFunction(event) {
+        event.preventDefault();
+        var username=document.getElementById('usernameTxt').value;
+        var password=document.getElementById('passwordTxt').value;
+        var cpassword=document.getElementById('cpasswordTxt').value;
+        if (password != cpassword){
+            alert("The two passwords don't match")
+        }else{
+            setCookie("registerDetails",username+","+password,1)
+            window.location.href = "register2.html";
+        }
+    }
+
+    
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+</script>
+</body>
+
+</html>

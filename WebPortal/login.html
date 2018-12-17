@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript"></script>
+
+    <title>Login Form</title>
+
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="login.css">
+
+</head>
+    <header>
+        <h1 align="center">Movie and Book Recommender</h1>
+    </header>
+
+    <div class="main-content">
+
+        <!-- You only need this form and the form-login.css -->
+
+        <form class="form-login" method="post" action="#">
+
+            <div class="form-log-in-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>Log In</h1>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Username</span>
+                            <input type="text" name="username" id="userTxt">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Password</span>
+                            <input type="password" name="password" id="passTxt">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <button type="submit" onclick="loginFunction(event)">Log in</button>
+                    </div>
+
+                </div>
+
+                <a href="register.html">Create an account &rarr;</a>
+                <a href="change-pass.html"><br><br>Change Password &rarr;</a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <script>
+    function loginFunction(event) {
+        event.preventDefault();
+        var username=document.getElementById('userTxt').value;
+        var password=document.getElementById('passTxt').value;
+
+
+        $.ajax({
+            url: "http://localhost:8888/user/"+username,
+            type: 'GET',
+            dataType: 'json', // added data type
+            success: function(res) {
+                if(res.password==password){
+                    alert("You're logged in!")
+                    setCookie("registerDetails",username+","+password,1)
+                    window.location.href = "display_homepage.html";
+                }else{
+                    alert("You've entered an incorrect password")
+                }
+            }
+        });
+
+        function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+        // var method = "GET";
+        // var request = new XMLHttpRequest();
+        // var url="http://localhost:8888/user/"+username;
+        // request.open(method, url,true);
+        // request.setRequestHeader("Content-Type", "application/JSON");
+        // var data = { "operation":operation, "username":username, "password":password};
+        // request.onload = function() {
+        //     var result = JSON.parse(request.responseText);
+        //     if(result.error=="false" && result.user_type=="Management"){
+        //         window.location.href = "file:///I:/Georgia%20Tech/Fall%20'17/Databases/BikeApplication/WebPortal/7-clean-and-responsive-forms/index.html";
+        //     }
+        //     else{
+        //         alert("Either your credentials are wrong or you don't have management access")
+        //     }
+        // };
+        // request.send(JSON.stringify(data));
+    }
+    </script>
+
+</body>
+
+</html>

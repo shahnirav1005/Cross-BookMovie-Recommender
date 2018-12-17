@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Login Form</title>
+
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="login.css">
+
+</head>
+    <header>
+        <h1 align="center">Movie and Book Recommender</h1>
+    </header>
+
+    <div class="main-content">
+
+        <!-- You only need this form and the form-login.css -->
+
+        <form class="form-login" method="post" action="#">
+
+            <div class="form-log-in-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>Change Password</h1>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Username</span>
+                            <input type="text" name="username" id="userTxt">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Old Password</span>
+                            <input type="password" name="password" id="passTxt">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>New Password</span>
+                            <input type="password" name="password" id="pass2Txt">
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <button type="submit" onclick="changePassword(event)">Change Password</button>
+                    </div>
+
+                </div>
+
+                <a href="login.html">Back to login &rarr;<br></br></a>
+                <a href="register.html">Create an account &rarr;</a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <script>
+    function changePassword(event) {
+        event.preventDefault();
+        var username=document.getElementById('userTxt').value;
+        var password=document.getElementById('passTxt').value;
+        var new_password=document.getElementById('pass2Txt').value;
+        var operation="changePassword";
+        var method = "POST";
+        var request = new XMLHttpRequest();
+        var url="http://localhost/bike_share_database/index.php";
+        request.open(method, url,true);
+        request.setRequestHeader("Content-Type", "application/JSON");
+        var data = { "operation":operation, "username":username, "password":password,"new_password":new_password};
+        request.onload = function() {
+            var result = JSON.parse(request.responseText);
+            if(result.error=="false"){
+                alert("Password changed successfully");
+                window.location.href = "file:///I:/Georgia%20Tech/Fall%20'17/Databases/BikeApplication/WebPortal/7-clean-and-responsive-forms/form-login.html";
+            }
+            else{
+                alert("Either your credentials are wrong or you don't have management access")
+            }
+        };
+        request.send(JSON.stringify(data));
+    }
+    </script>
+
+</body>
+
+</html>

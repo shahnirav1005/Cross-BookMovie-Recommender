@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+	<title>Registration Form</title>
+
+	<link rel="stylesheet" href="demo.css">
+	<link rel="stylesheet" href="register.css">
+
+</head>
+
+	<header>
+		<h1>Movie and Book Recommender</h1>
+    </header>
+
+    <div class="main-content">
+
+        <!-- You only need this form and the form-register.css -->
+
+        <form class="form-register" method="post" action="#">
+
+            <div class="form-register-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>Create an account</h1>
+                    </div>
+
+                    <div class="form-row">
+                        <h2> Please select your 5 favourite books</h1>
+                    </div>
+
+                     <label>
+                        <select class="books-selector1" name="state">
+                          <option value="AL">Select one of the following</option>
+                        </select>
+                    </label>
+
+                     <label>
+                        <select class="books-selector2" name="state">
+                          <option value="AL">Select one of the following</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <select class="books-selector3" name="state">
+                          <option value="AL">Select one of the following</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <select class="books-selector4" name="state">
+                          <option value="AL">Select one of the following</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <select class="books-selector5" name="state">
+                          <option value="AL">Select one of the following</option>
+                        </select>
+                    </label>
+
+                    <div class="form-row">
+                        <h2> Please select your 5 favourite movies</h1>
+                    </div>
+
+                     <label>
+                        <select class="movies-selector1" name="state">
+                          <option value="AL">Select one of the following</option>
+                        </select>
+                    </label>
+
+                     <label>
+                        <select class="movies-selector2" name="state">
+                          <option value="AL">Select one of the following</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <select class="movies-selector3" name="state">
+                          <option value="AL">Select one of the following</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <select class="movies-selector4" name="state">
+                          <option value="AL">Select one of the following</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        <select class="movies-selector5" name="state">
+                          <option value="AL">Select one of the following</option>
+                        </select>
+                    </label>
+
+                    <div class="form-row">
+                        <button type="submit" onclick="registerUser(event)">Register</button>
+                    </div>
+
+                    <a href="login.html">Already have an account? Login here &rarr;</a>
+
+                </div>
+
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+    <script>
+        var listBooks;
+        var listMovies;
+        var selectWidth="400px"
+        $(document).ready(function() {
+            $('.books-selector1').select2({width: selectWidth});
+            $('.books-selector2').select2({width: selectWidth});
+            $('.books-selector3').select2({width: selectWidth});
+            $('.books-selector4').select2({width: selectWidth});
+            $('.books-selector5').select2({width: selectWidth});
+
+            jQuery.getJSON('http://localhost:8888/books').done(
+            function( data ) {
+
+                data = $.map(data, function(obj) {
+                    return { id: obj.name, text: obj.name }; 
+                });
+                $.listBooks=data;
+
+
+                $('.books-selector1').select2({
+                    width: selectWidth,
+                    data: $.listBooks
+                });
+
+                $('.books-selector2').select2({
+                    width: selectWidth,
+                    data: $.listBooks
+                });
+
+                $('.books-selector3').select2({
+                    width: selectWidth,
+                    data: $.listBooks
+                });
+
+                $('.books-selector4').select2({
+                    width: selectWidth,
+                    data: $.listBooks
+                });
+
+                $('.books-selector5').select2({
+                    width: selectWidth,
+                    data: $.listBooks
+                });
+            }
+        );
+
+        $('.movies-selector1').select2({width: selectWidth});
+        $('.movies-selector2').select2({width: selectWidth});
+        $('.movies-selector3').select2({width: selectWidth});
+        $('.movies-selector4').select2({width: selectWidth});
+        $('.movies-selector5').select2({width: selectWidth});
+
+        jQuery.getJSON('http://localhost:8888/movies').done(
+        function( data ) {
+
+            data = $.map(data, function(obj) {
+                return { id: obj.name, text: obj.name }; 
+            });
+            $.listBooks=data;
+
+
+            $('.movies-selector1').select2({
+                width: selectWidth,
+                data: $.listBooks
+            });
+
+            $('.movies-selector2').select2({
+                width: selectWidth,
+                data: $.listBooks
+            });
+
+            $('.movies-selector3').select2({
+                width: selectWidth,
+                data: $.listBooks
+            });
+
+            $('.movies-selector4').select2({
+                width: selectWidth,
+                data: $.listBooks
+            });
+
+            $('.movies-selector5').select2({
+                width: selectWidth,
+                data: $.listBooks
+            });
+        });
+    });
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    function registerUser(event){
+        event.preventDefault();
+        var userdetails=getCookie("registerDetails")
+        var username=userdetails.substring(0,userdetails.indexOf(','))
+        var password=userdetails.substring(userdetails.indexOf(',')+1,userdetails.length)
+        var books=$('.books-selector1 option:selected').text()+"||"+$('.books-selector2 option:selected').text()+"||"+$('.books-selector3 option:selected').text()+"||"+$('.books-selector4 option:selected').text()+"||"+$('.books-selector5 option:selected').text()
+        var movies=$('.movies-selector1 option:selected').text()+"||"+$('.movies-selector2 option:selected').text()+"||"+$('.movies-selector3 option:selected').text()+"||"+$('.movies-selector4 option:selected').text()+"||"+$('.movies-selector5 option:selected').text()
+        
+        // submit reuest
+        var data={"username": username, "password": password, "booksHistory": books, "moviesHistory": movies};
+        console.log(JSON.stringify(data))
+        $.ajax({
+            url: 'http://localhost:8888/user',
+            type: 'post',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                alert("You've been registered successfully")
+                window.location.href = "display_homepage.html";
+
+            },
+            data: JSON.stringify(data)
+        });
+    }
+
+    </script>
+
+</body>
+
+</html>
