@@ -12,6 +12,15 @@ Page & Reel (Cross BookMovie Recommender) is an innovative app that provides use
 
 Each item displayed to the user corresponds to a single recommendation. Users may filter the results by selection, for a drop down menu, the media type. Each book or movies is also linked, via a button, to Goodreads and IMDB, respectively. The user may choose to opt for recommending media contained in our database by clicking "Search via Page and Reel". Additional information regarding a given item is also displayed in each cell for the user's convenience, sich as description, genre, title, and writer(s). 
 
+## Group Members
+
+1. Brian Merritt
+2. Haritha Ramesh
+3. Irtaza Haider
+4. **Nirav Shah**
+5. Ryan Place
+6. Shubhashree Baskar
+
 ## Dependencies
 
 - Python: 2.7
